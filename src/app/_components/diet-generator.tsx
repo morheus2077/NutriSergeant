@@ -27,7 +27,8 @@ export function DietGenerator(data: DietGeneratorProps)
         setIsStreaming(true) 
 
         try{
-            const response = await fetch("http://localhost:3333/plan", {
+            const response = await fetch(
+                process.env.NODE_ENV === 'development' ? "http://localhost:3333/plan" as string : process.env.NEXT_PUBLIC_API_URL as string, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
