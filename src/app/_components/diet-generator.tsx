@@ -1,4 +1,5 @@
 'use client '
+import 'dotenv/config'
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SparkleIcon, StopCircleIcon } from "@phosphor-icons/react";
