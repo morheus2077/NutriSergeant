@@ -120,13 +120,7 @@ export function DietGenerator(data: DietGeneratorProps)
                                 className=""
                                 {...props}
                                 />
-                            ),
-                            li: ({ node, ...props }) => (
-                                <li
-                                className="before:content-['-'] before:mr-1"
-                                {...props}
-                                />
-                            )                        
+                            )                       
                         }}
                         >
                             {output}
