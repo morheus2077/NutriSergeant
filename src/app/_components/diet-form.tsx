@@ -16,7 +16,7 @@ export const DietPlanRequestSchema = z.object({
     weight: z.number().positive(),
     gender: z.enum(["masculino","feminino"], { error: "Erro, selecione o sexo" }),
     activity_level: z.enum(["sedentário", "2x_semana", "3x_semana", "6x_semana"], { error: "Erro, selecione o nível de actividade" }),
-    goal: z.enum(["hipertrofia", "manter_massa_muscular", "perda_de _peso"], { error: "Erro, selecione o objectivo" })
+    goal: z.enum(["hipertrofia", "manter massa muscular", "perda de peso"], { error: "Erro, selecione o objectivo" })
 })
 
 export type DietSchemaFormData = z.infer<typeof DietPlanRequestSchema>;
@@ -216,9 +216,9 @@ export default function DietForm({ onSubmit }: DietFormProps){
                         </FormControl>
 
                         <SelectContent>
-                          <SelectItem value="perda_de_peso">Perda de peso</SelectItem>
+                          <SelectItem value="perda de peso">Perda de peso</SelectItem>
                           <SelectItem value="hipertrofia">Hipertrofia</SelectItem>
-                          <SelectItem value="manter_massa_muscular">Manter massa muscular</SelectItem>
+                          <SelectItem value="manter massa muscular">Manter massa muscular</SelectItem>
                         </SelectContent>
                       </Select>
                     </FormItem>

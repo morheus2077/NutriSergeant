@@ -10,7 +10,7 @@ export interface DietData {
   weight: number,
   gender: "masculino" | "feminino",
   activity_level: "sedentário" | "2x_semana" | "3x_semana" | "6x_semana",
-  goal: "hipertrofia" | "manter_massa_muscular" | "perda de peso"
+  goal: "hipertrofia" | "manter massa muscular" | "perda de peso"
 }
 
 export default function Home() {
