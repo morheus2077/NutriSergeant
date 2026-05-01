@@ -27,7 +27,7 @@ export default function Home() {
     {!data || goBack ?(
       <DietForm onSubmit={handleSubmit}/>
     ) : (
-      <DietGenerator data={data} goBack={goBack} setGoback={setGoBack}/>
+      <DietGenerator data={data} setGoback={setGoBack}/>
     )}
     </>
     

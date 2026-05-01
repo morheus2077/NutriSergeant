@@ -12,13 +12,12 @@ import Link from 'next/link';
 
 interface DietGeneratorProps {
     data: DietData | null,
-    goBack: boolean,
     setGoback: (value: boolean) => void
 }
 
-export function DietGenerator({data, goBack, setGoback }: DietGeneratorProps)
+export function DietGenerator({data, setGoback }: DietGeneratorProps)
 {
-    const[output, setOutPut] = useState<string | null>("")
+    const[output, setOutPut] = useState<string>("")
     const[isStreaming, setIsStreaming] = useState<boolean>(false)
     
     const controllerRef = useRef<AbortController | null>(null)
@@ -92,7 +91,7 @@ export function DietGenerator({data, goBack, setGoback }: DietGeneratorProps)
             return
         }             
             
-        setOutPut(null)
+        setOutPut("")
         setGoback(true)
     }
 
@@ -116,7 +115,7 @@ export function DietGenerator({data, goBack, setGoback }: DietGeneratorProps)
                             {isStreaming ? "Cancelar" : "Gerar dieta"}
                         </Button>
                     </div>
-                    {output && isStreaming &&(
+                    {output &&(
                         <div className="bg-card rounded-lg p-6 border border-border max-h-[500px] overflow-y-auto">
                         <div className="prose prose-sm max-w-none">
                             <Markdown
