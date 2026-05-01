@@ -2,20 +2,23 @@
 import 'dotenv/config'
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { SparkleIcon, StopCircleIcon } from "@phosphor-icons/react";
+import { ArrowArcLeftIcon, SparkleIcon, StopCircleIcon } from "@phosphor-icons/react";
 import { DietData } from "../page";
 import { useRef, useState } from "react";
 import Markdown from "react-markdown";
 import { Spinner } from "@/components/ui/spinner";
 import { truncate } from 'fs';
+import Link from 'next/link';
 
 interface DietGeneratorProps {
-    data: DietData
+    data: DietData | null,
+    goBack: boolean,
+    setGoback: (value: boolean) => void
 }
 
-export function DietGenerator(data: DietGeneratorProps)
+export function DietGenerator({data, goBack, setGoback }: DietGeneratorProps)
 {
-    const[output, setOutPut] = useState<string>("")
+    const[output, setOutPut] = useState<string | null>("")
     const[isStreaming, setIsStreaming] = useState<boolean>(false)
     
     const controllerRef = useRef<AbortController | null>(null)
@@ -36,13 +39,13 @@ export function DietGenerator(data: DietGeneratorProps)
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    name: data.data.name,
-                    age: data.data.age,
-                    height: data.data.height,
-                    weight: data.data.weight,
-                    gender: data.data.gender,
-                    activity_level: data.data.activity_level,
-                    goal: data.data.goal
+                    name: data?.name,
+                    age: data?.age,
+                    height: data?.height,
+                    weight: data?.weight,
+                    gender: data?.gender,
+                    activity_level: data?.activity_level,
+                    goal: data?.goal
                 }),
                 //permite cancelar a requisicao a qualquer momento
                 signal: controller.signal
@@ -82,54 +85,73 @@ export function DietGenerator(data: DietGeneratorProps)
         await startStreaming();
     }
 
+    function handleGoBack(){
+        if(isStreaming){
+            controllerRef.current?.abort()
+            setIsStreaming(false)
+            return
+        }             
+            
+        setOutPut(null)
+        setGoback(true)
+    }
+
     return(
         <>
-        <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-6">
-            <Card className="w-full max-w-4xl border-0">
+            <div className="min-h-svh flex flex-col items-center justify-center px-4 md:px-6 pb-40">
 
-                <div className="flex justify-center gap-4">
-                    <Button onClick={handleGenerate} className="cursor-pointer gap-2 rounded-2xl" >
-                        {isStreaming ? <Spinner name="w-6 h-6"/> : <SparkleIcon name="w-6 h-6" />}
-                        {isStreaming ? "Cancelar" : "Gerar dieta"}
-                    </Button>
-                </div>
-
-                {output &&(
-                    <div className="bg-card rounded-lg p-6 border border-border max-h-[500px] overflow-y-auto">
-                    <div className="prose prose-sm max-w-none">
-                        <Markdown
-                        components={{
-                            h2: ({ node, ...props }) => (
-                                <h2
-                                className="text-xl font-bold text-green-600 my-1"
-                                {...props}
-                                />
-                            ),
-                            h1: ({ node, ...props }) => (
-                              <h2
-                              className="text-2xl font-bold text-zinc-900 mb-1"
-                              {...props}/>  
-                            ),
-                           h3: ({ node, ...props }) => (
-                              <h3
-                              className="text-lg font-bold text-blue-500 mb-1"
-                              {...props}/>  
-                            ),
-                            strong: ({ node, ...props }) => (
-                                <strong
-                                className=""
-                                {...props}
-                                />
-                            )                       
-                        }}
-                        >
-                            {output}
-                        </Markdown>
+            <div className='p-5'>
+                <Button
+                onClick={handleGoBack}
+                className='flex cursor-pointer'>
+                    <ArrowArcLeftIcon/>
+                    Voltar
+                </Button>
+            </div>
+            
+                <Card className="w-full max-w-4xl border-0">
+                    <div className="flex justify-center gap-4">
+                        <Button onClick={handleGenerate} className="cursor-pointer gap-2 rounded-2xl" >
+                            {isStreaming ? <Spinner name="w-6 h-6"/> : <SparkleIcon name="w-6 h-6" />}
+                            {isStreaming ? "Cancelar" : "Gerar dieta"}
+                        </Button>
                     </div>
-                </div>
-                )}
-            </Card>
-        </div>
+                    {output && isStreaming &&(
+                        <div className="bg-card rounded-lg p-6 border border-border max-h-[500px] overflow-y-auto">
+                        <div className="prose prose-sm max-w-none">
+                            <Markdown
+                            components={{
+                                h2: ({ node, ...props }) => (
+                                    <h2
+                                    className="text-xl font-bold text-green-600 my-1"
+                                    {...props}
+                                    />
+                                ),
+                                h1: ({ node, ...props }) => (
+                                  <h2
+                                  className="text-2xl font-bold text-zinc-900 mb-1"
+                                  {...props}/>
+                                ),
+                               h3: ({ node, ...props }) => (
+                                  <h3
+                                  className="text-lg font-bold text-blue-500 mb-1"
+                                  {...props}/>
+                                ),
+                                strong: ({ node, ...props }) => (
+                                    <strong
+                                    className=""
+                                    {...props}
+                                    />
+                                ),
+                            }}
+                            >
+                                {output}
+                            </Markdown>
+                        </div>
+                    </div>
+                    )}
+                </Card>
+            </div>
         </>
     )
 }

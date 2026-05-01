@@ -15,17 +15,19 @@ export interface DietData {
 
 export default function Home() {
   const[data, setData] = useState<DietData | null>(null)
+  const[goBack, setGoBack] = useState<boolean>(false);
 
   const handleSubmit = (UserPrompt: DietData) =>{
     setData(UserPrompt)
+    setGoBack(false)
   }
 
   return (
     <>
-    {!data ?(
+    {!data || goBack ?(
       <DietForm onSubmit={handleSubmit}/>
     ) : (
-      <DietGenerator data={data}/>
+      <DietGenerator data={data} goBack={goBack} setGoback={setGoBack}/>
     )}
     </>
     
