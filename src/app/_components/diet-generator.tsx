@@ -29,7 +29,7 @@ export function DietGenerator(data: DietGeneratorProps)
 
         try{
             const response = await fetch(
-                process.env.NODE_ENV === 'development' ? "http://localhost:3333/plan" as string : process.env.AGENT_API_URL as string, {
+                process.env.NODE_ENV === 'development' ? "http://localhost:3333/plan" as string : process.env.NEXT_PUBLIC_API_URL as string, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
