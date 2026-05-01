@@ -7,6 +7,7 @@ import { DietData } from "../page";
 import { useRef, useState } from "react";
 import Markdown from "react-markdown";
 import { Spinner } from "@/components/ui/spinner";
+import { truncate } from 'fs';
 
 interface DietGeneratorProps {
     data: DietData
@@ -57,7 +58,7 @@ export function DietGenerator(data: DietGeneratorProps)
                 if(done) break; //se nao houver mais texto para ler, sai do loop 
 
                 //caso ainda tenha texto para ler, ele continua a decodificar e coloca dentro do estado output (concatenando com o valor anterior)
-                setOutPut((output) => output + decoder.decode(value))
+                setOutPut((output) => output + decoder.decode(value, { stream: true }))
             }
         } catch (error: any){
             if(error.name === "AbortError"){
