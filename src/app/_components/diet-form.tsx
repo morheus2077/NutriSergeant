@@ -47,23 +47,20 @@ export default function DietForm({ onSubmit }: DietFormProps){
             <Card className='w-full lg:max-w-2xl border-0 h-screen  lg:h-auto overflow-y-auto lg:rounded-4xl'>
                 <div className='p-8 '>
                   <div className="text-center mb-8 text-blue-600">
-  
-  <div className="flex items-center justify-center mb-4 mx-auto">
-    <ForkKnifeIcon className="w-14 h-14" />
-  </div>
-
-  <TextType
-    typingSpeed={75}
-    pauseDuration={1500}
-    showCursor
-    cursorCharacter="_"
-    className='text-3xl'
-    deletingSpeed={100}
-  >
-    Calcule a sua dieta
-  </TextType>
-
-</div>
+                    <div className="flex items-center justify-center mb-4 mx-auto">
+                      <ForkKnifeIcon className="w-14 h-14" />
+                      </div>
+                      <TextType
+                      typingSpeed={75}
+                      pauseDuration={1500}
+                      showCursor
+                      cursorCharacter="_"
+                      className='text-2xl md:text-3xl'
+                      deletingSpeed={100}
+                    >
+                      Calcule a sua dieta
+                    </TextType>
+                    </div>
                     
                     <Form 
                     {...form}
@@ -73,7 +70,7 @@ export default function DietForm({ onSubmit }: DietFormProps){
                         className='space-y-6'
                         >
 
-                            <div className='space-y-4'>
+                            <div className='space-y-3 md:space-y-4'>
                                 <h3 className='text-lg font-semibold text-gray-900 flex items-center'>
                                     Dados pessoais
                                 </h3>
@@ -96,68 +93,73 @@ export default function DietForm({ onSubmit }: DietFormProps){
                                 )}
                                 />
 
-                                <FormField
-                                control={form.control}
-                                name="age"
-                                render={({ field }) =>(
-                                    <FormItem>
-                                        <FormLabel>Idade</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                            type='number'
-                                            step="any"
-                                            {...form.register("age", {
-                                                setValueAs: (v) => v === "" ? undefined : Number(v)
-                                            })}
-                                            placeholder='Ex: 19'
-                                            />
-                                        </FormControl>
-                                    </FormItem>
-                                )}
-                                />
+                                <div className="flex gap-3">
+                                  <FormField
+                                  control={form.control}
+                                  name="age"
+                                  render={({ field }) =>(
+                                      <FormItem>
+                                          <FormLabel>Idade</FormLabel>
+                                          <FormControl>
+                                              <Input
+                                              type='number'
+                                              step="any"
+                                              {...form.register("age", {
+                                                  setValueAs: (v) => v === "" ? undefined : Number(v)
+                                              })}
+                                              placeholder='Ex: 19'
+                                              />
+                                          </FormControl>
+                                      </FormItem>
+                                  )}
+                                  />
+                                                    <FormField
+                                                      control={form.control}
+                                                      name="weight"
+                                                      render={({ field }) => (
+                                                        <FormItem>
+                                                          <FormLabel>Peso em kg</FormLabel>
+                                                          <FormControl>
+                                                            <Input
+                                                              type='number'
+                                                              step="any"
+                                                              {...form.register("weight", {
+                                                                setValueAs: (v) => v === "" ? undefined : parseFloat(v),
+                                                              })}
+                                                              placeholder='Ex: 28'
+                                                            />
+                                                          </FormControl>
+                                                        </FormItem>
+                                                      )}
+                                                    />
+                                </div>
+
                             </div>
 
-                              {/* CAMPOS PESO, SEXO E ALTURA*/}
-              <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-                <FormField
-                  control={form.control}
-                  name="weight"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Peso em kg</FormLabel>
-                      <FormControl>
-                        <Input
-                          type='number'
-                          step="any"
-                          {...form.register("weight", {
-                            setValueAs: (v) => v === "" ? undefined : parseFloat(v),
-                          })}
-                          placeholder='Ex: 28'
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+                              {/* SEXO E ALTURA*/}
+              <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
+                <div className="flex gap-3">
 
-                <FormField
-                  control={form.control}
-                  name="height"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Altura em cm</FormLabel>
-                      <FormControl>
-                        <Input
-                          type='number'
-                          step="any"
-                          {...form.register("height", {
-                            setValueAs: (v) => v === "" ? undefined : parseFloat(v),
-                          })}
-                          placeholder='Ex: 28'
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+                  <FormField
+                    control={form.control}
+                    name="height"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Altura em cm</FormLabel>
+                        <FormControl>
+                          <Input
+                            type='number'
+                            step="any"
+                            {...form.register("height", {
+                              setValueAs: (v) => v === "" ? undefined : parseFloat(v),
+                            })}
+                            placeholder='Ex: 28'
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
                 <FormField
                   control={form.control}
