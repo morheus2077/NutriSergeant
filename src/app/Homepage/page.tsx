@@ -24,7 +24,7 @@ export default function HomePage() {
 
       {/* conteúdo */}
       <section className="relative z-10 flex h-full items-center justify-center">
-        <div className='flex flex-col gap-3 justify-center items-center'>
+        <div className='flex flex-col gap-3 justify-center items-center mx-3'>
             <SplitText
             text="Gere a sua dieta em menos de 30 segundos!🚀"
             className="md:text-5xl 
