@@ -122,7 +122,7 @@ export function DietGenerator({data, setGoback }: DietGeneratorProps)
                             components={{
                                 h2: ({ node, ...props }) => (
                                     <h2
-                                    className="text-xl font-bold text-green-600 my-1"
+                                    className="text-xl font-bold text-blue-600 my-1"
                                     {...props}
                                     />
                                 ),
@@ -133,7 +133,7 @@ export function DietGenerator({data, setGoback }: DietGeneratorProps)
                                 ),
                                h3: ({ node, ...props }) => (
                                   <h3
-                                  className="text-lg font-bold text-blue-500 mb-1"
+                                  className="text-lg font-bold text-green-500 mb-1"
                                   {...props}/>
                                 ),
                                 strong: ({ node, ...props }) => (

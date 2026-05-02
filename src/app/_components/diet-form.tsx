@@ -8,6 +8,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import TextType from '../../components/TextType';
+import Orb from '@/components/Orb';
 
 export const DietPlanRequestSchema = z.object({
     name: z.string().min(2, "O nome é obrigatório"),
@@ -41,15 +43,27 @@ export default function DietForm({ onSubmit }: DietFormProps){
 
     return(
         <>
-        <div className='min-h-screen flex items-center justify-center p-4 rounded'>
-            <Card className='w-full max-w-2xl border-0 '>
+        <div className='min-h-screen flex items-center justify-center lg:p-4 rounded bg-blue-950'>
+            <Card className='w-full lg:max-w-2xl border-0 h-screen  lg:h-auto overflow-y-auto lg:rounded-4xl'>
                 <div className='p-8 '>
-                    <div className='text-center mb-8'>
-                        <div className='flex items-center justify-center mb-4 mx-auto'>
-                            <ForkKnifeIcon className='w-14 h-14 text-green-500'/>
-                        </div>
-                        <h1 className='text-3xl font-bold text-green-500 mb-2'>Calcule a sua dieta</h1>
-                    </div>
+                  <div className="text-center mb-8 text-blue-600">
+  
+  <div className="flex items-center justify-center mb-4 mx-auto">
+    <ForkKnifeIcon className="w-14 h-14" />
+  </div>
+
+  <TextType
+    typingSpeed={75}
+    pauseDuration={1500}
+    showCursor
+    cursorCharacter="_"
+    className='text-3xl'
+    deletingSpeed={100}
+  >
+    Calcule a sua dieta
+  </TextType>
+
+</div>
                     
                     <Form 
                     {...form}
@@ -225,14 +239,10 @@ export default function DietForm({ onSubmit }: DietFormProps){
                   )}
                 />
               </div>
-
-
-              <Button type='submit' className='w-full mt-4 hover:opacity-90 cursor-pointer'>
+              <Button type='submit' className='w-full mt-4 hover:opacity-90 cursor-pointer bg-blue-600'>
                 Gerar minha dieta
               </Button>
-
             </form>
-
             </Form>
                 </div>       
             </Card>

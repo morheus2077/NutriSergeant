@@ -18,7 +18,7 @@ export default function HomePage() {
         rotateOnHover
         hue={0}
         forceHoverState={false}
-        backgroundColor=""  
+        backgroundColor="#5158ff"  
         />
       </div>
 
