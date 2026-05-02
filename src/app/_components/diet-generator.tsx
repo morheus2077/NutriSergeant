@@ -3,7 +3,7 @@ import 'dotenv/config'
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowArcLeftIcon, SparkleIcon, StopCircleIcon } from "@phosphor-icons/react";
-import { DietData } from "../page";
+import { DietData } from '../generate/page';
 import { useRef, useState } from "react";
 import Markdown from "react-markdown";
 import { Spinner } from "@/components/ui/spinner";
