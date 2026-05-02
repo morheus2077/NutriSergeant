@@ -2,9 +2,9 @@
 
 import Orb from '@/components/Orb';
 import ElectricBorder from '../../components/ElectricBorder'
+import AnimatedContent from '../../components/AnimatedContent'
 import { Button } from '@base-ui/react';
 import SplitText from "../../components/SplitText";
-import ShinyText from '../../components/ShinyText';
 import Link from 'next/link';
 
 
@@ -40,8 +40,19 @@ export default function HomePage() {
             rootMargin="-100px"
             textAlign="center"
             />
-            
-            <ElectricBorder
+            <AnimatedContent
+  distance={100}
+  direction="vertical"
+  reverse={false}
+  duration={1.5}
+  ease="power3.out"
+  initialOpacity={0}
+  animateOpacity
+  scale={1}
+  threshold={0.1}
+  delay={1.2}
+>
+  <ElectricBorder
             className='mt-5'
             color="#7df9ff"
             speed={1}
@@ -55,6 +66,9 @@ export default function HomePage() {
                 </Button>
             </Link>
         </ElectricBorder>
+</AnimatedContent>
+            
+            
         </div>
       </section>
     </main>
