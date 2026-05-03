@@ -84,10 +84,10 @@ export default function DietForm({ onSubmit }: DietFormProps){
                                     <FormItem>
                                         <FormLabel>Nome</FormLabel>
                                         <FormControl>
-                                            <Input
-                                            {...field}
-                                            placeholder='Digite o seu nome...'
-                                            />
+                                          <Input
+                                          {...field}
+                                          placeholder='Digite o seu nome...'
+                                          />
                                         </FormControl>
                                     </FormItem>
                                 )}
@@ -113,28 +113,27 @@ export default function DietForm({ onSubmit }: DietFormProps){
                                       </FormItem>
                                   )}
                                   />
-                                                    <FormField
-                                                      control={form.control}
-                                                      name="weight"
-                                                      render={({ field }) => (
-                                                        <FormItem>
-                                                          <FormLabel>Peso em kg</FormLabel>
-                                                          <FormControl>
-                                                            <Input
-                                                              type='number'
-                                                              step="any"
-                                                              {...form.register("weight", {
-                                                                setValueAs: (v) => v === "" ? undefined : parseFloat(v),
-                                                              })}
-                                                              placeholder='Ex: 28'
-                                                            />
-                                                          </FormControl>
-                                                        </FormItem>
-                                                      )}
-                                                    />
+                                  <FormField
+                                  control={form.control}
+                                  name="weight"
+                                  render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Peso em kg</FormLabel>
+                                  <FormControl>
+                                  <Input
+                                  type='number'
+                                  step="any"
+                                  {...form.register("weight", {
+                                    setValueAs: (v) => v === "" ? undefined : parseFloat(v),
+                                  })}
+                                  placeholder='Ex: 28'
+                                  />
+                                  </FormControl>
+                                  </FormItem>
+                                  )}
+                                  />
                                 </div>
-
-                            </div>
+                                </div>
 
                               {/* SEXO E ALTURA*/}
               <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
